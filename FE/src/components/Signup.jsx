@@ -8,7 +8,7 @@ import { useAuth } from "../context/AuthContext";
 import { toast } from "react-toastify";
 
 const Signup = () => {
-  const navigation = useNavigate();
+  const navigate = useNavigate();
   const [error, setError] = useState("");
   const [spin, setSpin] = useState(false);
   const [showPass, setShowPass] = useState(false);
@@ -17,19 +17,18 @@ const Signup = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
 
-  //register user
+  // Register user
   const onSubmit = async (data) => {
     setSpin(true);
-    console.log(data);
     try {
       await registerUser(data.email, data.password);
       toast.success("User registered successfully!");
       setError(""); // Clear any previous error
-      navigate("/")    } catch (error) {
+      navigate("/");
+    } catch (error) {
       toast.error("Registration failed! Try Again.");
       setError("Please provide a valid email and password");
     } finally {
@@ -37,12 +36,13 @@ const Signup = () => {
     }
   };
 
-  const handleEye = (e) => {
+  const handleEyeToggle = (e) => {
     e.preventDefault();
     setShowPass((prev) => !prev);
   };
 
   const handleGoogleSignIn = async () => {
+    setSpin(true);
     try {
       await signInWithGoogle();
       toast.success("User registered successfully!");
@@ -50,7 +50,7 @@ const Signup = () => {
       navigate("/");
     } catch (error) {
       toast.error("Registration failed! Try Again.");
-      setError("Google Sign in failed! Try again.");
+      setError("Google Sign-in failed! Try again.");
       console.error(error);
     } finally {
       setSpin(false); // Stop spinner after registration
@@ -75,7 +75,6 @@ const Signup = () => {
             <input
               {...register("email", { required: "Email is required" })}
               type="email"
-              name="email"
               id="email"
               placeholder="Email Address"
               className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow"
@@ -95,18 +94,13 @@ const Signup = () => {
             </label>
             <input
               {...register("password", { required: "Password is required" })}
-              type={!showPass ? "password" : "text"}
-              name="password"
+              type={showPass ? "text" : "password"}
               id="password"
               placeholder="Password"
               className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow"
             />
-            <button onClick={handleEye} className="absolute right-4 top-9">
-              {!showPass ? (
-                <FaRegEyeSlash className="w-5 h-5" />
-              ) : (
-                <FaRegEye className="w-5 h-5" />
-              )}
+            <button onClick={handleEyeToggle} className="absolute right-4 top-9">
+              {showPass ? <FaRegEye className="w-5 h-5" /> : <FaRegEyeSlash className="w-5 h-5" />}
             </button>
             {errors.password && (
               <p className="text-red-500 text-sm mt-1">
@@ -123,7 +117,7 @@ const Signup = () => {
               className="bg-primary hover:bg-blue-700 text-white font-bold px-8 py-2 rounded focus:outline-none w-full text-center flex items-center justify-center"
             >
               <span className="text-center">
-                {!spin ? "Signup" : <Spinner />}
+                {spin ? <Spinner /> : "Signup"}
               </span>
             </button>
           </div>
