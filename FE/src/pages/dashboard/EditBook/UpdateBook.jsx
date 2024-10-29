@@ -9,7 +9,7 @@ import getBaseUrl from "../../../utils/baseURL";
 import {
   useFetchBookByIdQuery,
   useUpdateBookMutation,
-} from "../../../redux/features/books/booksAPi";
+} from "../../../redux/features/books/booksApi";
 import Loader from "../../../components/Loader";
 
 const UpdateBook = () => {

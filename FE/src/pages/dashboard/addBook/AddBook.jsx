@@ -3,7 +3,7 @@ import InputField from './InputField'
 import SelectField from './SelectField'
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
-import { useAddBooksMutation } from '../../../redux/features/books/booksAPi';
+import { useAddBooksMutation } from '../../../redux/features/books/booksApi';
 
 const AddBook = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
