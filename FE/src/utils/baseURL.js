@@ -1,5 +1,5 @@
 const getBaseUrl = () => {
-  return "http://localhost:3000";
+  return "https://bh-server.codewithkara.com";
 };
 
 export default getBaseUrl;
