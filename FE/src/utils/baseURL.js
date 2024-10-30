@@ -1,5 +1,5 @@
 const getBaseUrl = () => {
-  return "https://bh-se3rver.codewithkara.com";
+  return "https://bh-server.codewithkara.com";
 };
 
 export default getBaseUrl;
