@@ -52,7 +52,7 @@ const Footer = () => {
           <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary">
             <FaInstagram size={24} />
           </a>
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary">
+          <a href="https://github.com/GauravSinghdev/BookStore-APP---bookHorizon" target="_blank" rel="noopener noreferrer" className="hover:text-primary">
             <FaGithub size={24} />
           </a>
         </div>
